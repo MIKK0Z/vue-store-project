@@ -10,7 +10,7 @@
 </script>
 
 <template>
-    <Header></Header>
+    <Header />
 
     <div class="content">
         <RouterView />

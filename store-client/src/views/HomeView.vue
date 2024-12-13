@@ -17,9 +17,18 @@
 </script>
 
 <template>
-    <!-- {{ JSON.stringify(promotionsList) }} -->
-    
-    <RouterLink v-for="promotion in promotionsList" :to="`promotion/${promotion.id}`" :key="promotion.id">
+	<!--<div class="promotions">-->
+    <!--<RouterLink v-for="promotion in promotionsList" :to="`promotion/${promotion.id}`" :key="promotion.id">
         <PromotionTile :promotion="promotion" />
-    </RouterLink>
+    </RouterLink>-->
+    		<PromotionTile v-for="promotion in promotionsList" :key="promotion.id" :promotion="promotion" />
+	<!--</div>-->
 </template>
+
+<style scoped>
+	/*.promotions {
+		display: flex;
+		flex-direction: column;
+		gap: 4rem;
+	}*/
+</style>
