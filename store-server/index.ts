@@ -8,7 +8,9 @@ const app = express();
 app.use(cors());
 
 app.get("/promotions", (_req, res) => {
-	res.json(promotions);
+	setTimeout(() => {
+		res.json(promotions);
+	}, 500 + Math.random() * 1000);
 });
 
 app.listen(PORT, () => {
