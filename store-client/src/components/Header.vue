@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script>
     import { RouterLink } from "vue-router";
 </script>
 
@@ -26,6 +26,5 @@
                 background-color: dimgray;
             }
         }
-        
     }
 </style>

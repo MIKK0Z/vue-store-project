@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 
 import promotions from "./data/promotions.json";
-
+ 
 const PORT = 3000;
 const app = express();
 app.use(cors());
