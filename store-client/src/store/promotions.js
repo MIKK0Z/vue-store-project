@@ -38,12 +38,12 @@ const promotions = {
     },
 
     actions: {
-        FETCH_PROMOTIONS({ state, commit }) {
+        FETCH_PROMOTIONS({ _state, commit }) {
             commit("SET_PROMOTIONS_LOADING", true);
+            commit("SET_PROMOTIONS_LIST", []);
 
             getPromotions().then((data) => {
-                console.log(data)
-                commit("SET_PROMOTIONS_LIST", data.promotions);
+                commit("SET_PROMOTIONS_LIST", data);
             }).catch((error) => {
                 commit("SET_PROMOTIONS_ERROR", error);
             }).finally(() => {
