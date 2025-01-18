@@ -8,6 +8,8 @@
             <RouterLink to="/" exact>Home</RouterLink>
             <RouterLink to="/about" exact>About</RouterLink>
             <RouterLink to="/notfoundtest" exact>404</RouterLink>
+
+            <RouterLink to="/register" exact class="registerLink">Register</RouterLink>
         </div>
     </header>
 </template>
@@ -17,14 +19,24 @@
         width: 100dvw;
         background-color: black;
 
-        & a {
-            color: aliceblue;
-            text-decoration: none;
-            padding: 1rem .5rem;
+        & > .content {
+            display: grid;
+            grid-template-columns: auto auto auto 1fr auto;
 
-            &:hover {
-                background-color: dimgray;
+            & > a {
+                color: aliceblue;
+                text-decoration: none;
+                padding: 1rem .5rem;
+
+                &:hover {
+                    background-color: dimgray;
+                }
+
+                &.registerLink {
+                    background-color: blue;
+                    grid-column: 5;
+                }
             }
-        }
+        } 
     }
 </style>

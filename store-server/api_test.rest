@@ -1,0 +1,9 @@
+### POST - regiser user
+POST http://localhost:3000/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "asad@asdaaa.pl",
+    "password": "123qweASD",
+    "repeatPassword": "123qweASD"
+}

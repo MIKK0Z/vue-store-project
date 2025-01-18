@@ -3,8 +3,8 @@
         props: ["promotion"],
         computed: {
             promotionBg() {
-		const { image } = this.promotion;
-		return `url(/src/assets/${image})`;
+				const { image } = this.promotion;
+				return `url(/src/assets/${image})`;
             }
         }
     }
