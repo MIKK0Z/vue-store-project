@@ -15,9 +15,19 @@ const getProduct = (id) => get(`${BASE_URL}/product/${id}`);
 
 const post = (url, data) => new Promise((resolve, reject) => {
     axios.post(url, data, { withCredentials: true }).then((res) => {
-        resolve(res.data);
+        resolve({
+            status: res.status,
+            data: res.data
+        });
     }).catch((err) => {
-        reject(err);
+        if (err.response) {
+            resolve({
+                status: err.response.status,
+                data: err.response.data
+            });
+        } else {
+            reject(err);
+        }
     });
 });
 

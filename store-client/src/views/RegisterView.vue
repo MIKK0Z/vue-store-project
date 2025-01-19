@@ -87,19 +87,40 @@
                     return;
                 }
 
-                this.appState = AppState.Loading;
-                this.errorMessage = "";
-
                 const res = await postRegister({
                     email: this.email,
                     password: this.password,
                     repeatPassword: this.repeatPassword,
                 });
 
+                this.errorMessage = "";
+
                 console.log(res)
 
-                this.appState = AppState.Default;
+                switch (res.status) {
+                    case 200:
+                        this.appState = AppState.Registered;
+                        break;
+                    case 400:
+                        this.appState = AppState.Default;
+                        this.errorMessage = res.data.message;
+                        break;
+                    case 409:
+                        this.appState = AppState.Exists;
+                        break;
+                    default:
+                        this.appState = AppState.Default;
+                        this.errorMessage = "Something went wrong";
+                        break;
+                };
             },
+            reset() {
+                this.email = "";
+                this.password = "";
+                this.repeatPassword = "";
+                this.errorMessage = "";
+                this.appState = AppState.Default;
+            }
         },
     };
 </script>
@@ -129,11 +150,15 @@
             <template v-else-if="appState === AppState.Exists">
                 <div>
                     user already exists
+
+                    <button @click="reset">Try again</button>
                 </div>
             </template>
             <template v-else-if="appState === AppState.Registered">
                 <div>
                     user successfully registered
+
+                    <button @click="reset">Return</button>
                 </div>
             </template>
         </div>
