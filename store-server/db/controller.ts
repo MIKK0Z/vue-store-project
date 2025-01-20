@@ -10,9 +10,8 @@ const connect = async () => {
         usersCollection = await db.collection("users");
     } catch (_err) {
         console.log("check if mongo service is running");
-    }
-    
-}
+    } 
+};
 
 const getUsers = async () => {
     const users = await usersCollection.find().toArray();
@@ -35,4 +34,4 @@ export {
     getUsers,
     getUser,
     createUser,
-}
+};

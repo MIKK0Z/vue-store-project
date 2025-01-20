@@ -44,46 +44,55 @@
 
                 if (this.email === "") {
                     this.errorMessage = "E-mail cannot be empty";
+                    this.appState = AppState.Default;
                     return;
                 }
 
                 if (this.email.length < 6) {
                     this.errorMessage = "E-mail have to be at least 6 characters long";
+                    this.appState = AppState.Default;
                     return;
                 }
 
                 if (!/^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/gm.exec(this.email)) {
                     this.errorMessage = "E-mail is incorrect";
+                    this.appState = AppState.Default;
                     return;
                 }
 
                 if (this.password === "") {
                     this.errorMessage = "Password cannot be empty";
+                    this.appState = AppState.Default;
                     return;
                 }
 
                 if (this.password.length < 8) {
                     this.errorMessage = "Password have to be at least 8 characters long";
+                    this.appState = AppState.Default;
                     return;
                 }
 
                 if (!/[a-z]/.exec(this.password)) {
                     this.errorMessage = "Password have to include lowercase character";
+                    this.appState = AppState.Default;
                     return;
                 }
 
                 if (!/[A-Z]/.exec(this.password)) {
                     this.errorMessage = "Password have to include uppercase character";
+                    this.appState = AppState.Default;
                     return;
                 }
 
                 if (!/\d/.exec(this.password)) {
                     this.errorMessage = "Password have to inclue digit";
+                    this.appState = AppState.Default;
                     return;
                 }
 
                 if (this.password !== this.repeatPassword) {
                     this.errorMessage = "Passwords don't match";
+                    this.appState = AppState.Default;
                     return;
                 }
 
@@ -94,8 +103,6 @@
                 });
 
                 this.errorMessage = "";
-
-                console.log(res)
 
                 switch (res.status) {
                     case 200:
@@ -136,7 +143,7 @@
                     <h2>Register form</h2>
 
                     <template v-if="isError">
-                        <div>
+                        <div class="error-box">
                             {{ errorMessage }}
                         </div>
                     </template>
@@ -148,14 +155,13 @@
                 </form>
             </template>
             <template v-else-if="appState === AppState.Exists">
-                <div>
-                    user already exists
-
-                    <button @click="reset">Try again</button>
+                <div class="info-box">
+                    <h2>user already exists</h2>
+                    <button @click="reset">Return</button>
                 </div>
             </template>
             <template v-else-if="appState === AppState.Registered">
-                <div>
+                <div class="info-box">
                     user successfully registered
 
                     <button @click="reset">Return</button>
@@ -171,6 +177,7 @@
         display: flex;
         flex-direction: column;
         gap: .5rem;
+        width: 16rem;
 
         & > h2 {
             text-align: center;
@@ -179,6 +186,21 @@
         & > input {
             padding: .5rem;
         }
+
+        & > button {
+            padding: .5rem;
+        }
+    }
+
+    .error-box {
+        color: red;
+    }
+
+    .info-box {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        align-items: center;
 
         & > button {
             padding: .5rem;

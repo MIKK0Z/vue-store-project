@@ -111,8 +111,8 @@ app.post("/register", async (req, res) => {
 	}
 
 	await createUser(email, password);
-	res.sendStatus(200)
-})
+	res.sendStatus(200);
+});
 
 app.listen(PORT, () => {
 	console.log(`server started at localhost:${PORT}`);
